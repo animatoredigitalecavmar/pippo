@@ -100,7 +100,7 @@
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s ease;
-            cursor: pointer; /* Aggiunto per renderlo più intuitivo */
+            cursor: pointer;
         }
 
         .btn:hover {
@@ -118,7 +118,7 @@
 
         /* Stili Modale */
         .modal {
-            display: none; /* Nascosto di default */
+            display: none;
             position: fixed;
             z-index: 10;
             left: 0;
@@ -204,6 +204,33 @@
                 </div>
             </article>
 
+            <article class="recipe-card">
+                <img src="https://via.placeholder.com/400x300.png?text=Brodetto+Vastese" alt="Brodetto di Pesce">
+                <div class="recipe-info">
+                    <h2>Brodetto alla Vastese</h2>
+                    <p>Una ricca zuppa di pesce, tipica della costa di Vasto, un vero inno al mare.</p>
+                    <a class="btn" onclick="showRecipe('brodetto')">Scopri la ricetta</a>
+                </div>
+            </article>
+
+            <article class="recipe-card">
+                <img src="https://via.placeholder.com/400x300.png?text=Scrippelle+'Mbusse" alt="Scrippelle 'Mbusse">
+                <div class="recipe-info">
+                    <h2>Scrippelle 'Mbusse</h2>
+                    <p>Sottili crêpes salate immerse in un brodo caldo di gallina, un primo piatto delicato e saporito.</p>
+                    <a class="btn" onclick="showRecipe('scrippelle')">Scopri la ricetta</a>
+                </div>
+            </article>
+
+            <article class="recipe-card">
+                <img src="https://via.placeholder.com/400x300.png?text=Bocconotti" alt="Bocconotti">
+                <div class="recipe-info">
+                    <h2>Bocconotti</h2>
+                    <p>Un piccolo dolce di pasta frolla ripieno di marmellata d'uva o cioccolato, simbolo della pasticceria abruzzese.</p>
+                    <a class="btn" onclick="showRecipe('bocconotti')">Scopri la ricetta</a>
+                </div>
+            </article>
+
         </section>
     </main>
 
@@ -220,26 +247,39 @@
     </div>
 
     <script>
-        // Dati delle ricette (puoi espanderli!)
         const recipes = {
             arrosticini: {
                 title: "Arrosticini",
-                ingredients: "Carne di pecora (castrato o agnello), sale, rosmarino.",
-                instructions: "Tagliare la carne a cubetti di circa 1 cm e infilzarla su spiedini di legno. Cuocere sulla brace (furnacella) fino a doratura, salando solo alla fine."
+                ingredients: "Carne di pecora (castrato o agnello), sale grosso.",
+                instructions: "Taglia la carne in cubetti di circa 1 cm e infilzala su spiedini di legno, alternando parti magre e grasse per renderli più gustosi. Cuoci gli spiedini su una brace rovente, preferibilmente su una 'fornacella'. Gira spesso per una cottura uniforme. Salali solo a fine cottura per evitare che la carne si indurisca."
             },
             chitarra: {
                 title: "Maccheroni alla Chitarra",
-                ingredients: "Farina di grano duro, uova, acqua.",
-                instructions: "Impastare farina e uova. Stendere la sfoglia e tagliarla con l'apposito attrezzo 'la chitarra'. Condire con sugo di agnello o ragù."
+                ingredients: "400g di farina di semola di grano duro, 4 uova medie, acqua tiepida q.b.",
+                instructions: "Disponi la farina a fontana su una spianatoia, crea un buco al centro e rompi le uova. Impasta energicamente aggiungendo un po' d'acqua se necessario, fino a ottenere un panetto liscio. Lascia riposare per 30 minuti. Stendi la sfoglia con il mattarello e adagiala sulla 'chitarra'. Premi con il mattarello sulla sfoglia per far scendere i maccheroni. Cuoci in acqua bollente e condisci con il tradizionale ragù di castrato o agnello."
             },
             pallotte: {
                 title: "Pallotte Cacio e Ovo",
-                ingredients: "Pecorino e/o caciotta, uova, pangrattato, aglio, prezzemolo.",
-                instructions: "Grattugiare il formaggio, unire le uova e il pangrattato fino a ottenere un impasto compatto. Formare delle polpette e friggerle in olio bollente. Servire in sugo di pomodoro."
+                ingredients: "300g di formaggio pecorino e/o caciotta grattugiato, 3 uova, pangrattato q.b., aglio e prezzemolo tritati.",
+                instructions: "In una ciotola, mescola il formaggio grattugiato, le uova, l'aglio e il prezzemolo. Aggiungi il pangrattato poco alla volta fino a ottenere un impasto lavorabile, che non si attacchi alle mani. Forma delle palline (o polpette) e friggile in olio di semi caldo fino a doratura. Scolale e lasciale insaporire in un sugo di pomodoro semplice per qualche minuto."
+            },
+            brodetto: {
+                title: "Brodetto di Pesce alla Vastese",
+                ingredients: "Pesce fresco misto (seppie, triglie, scorfani, cozze), pomodorini, peperoni dolci secchi, aglio, peperoncino, olio EVO.",
+                instructions: "In una teglia larga (meglio se di coccio), soffriggi aglio e peperoncino nell'olio. Aggiungi i peperoni secchi a pezzetti e i pomodorini. Aggiungi i pesci più duri per primi, poi quelli più teneri e le cozze. Copri con acqua calda, sala e cuoci a fuoco basso senza mai mescolare, ma scuotendo la teglia per non rompere il pesce. Servi con fette di pane abbrustolito."
+            },
+            scrippelle: {
+                title: "Scrippelle 'Mbusse",
+                ingredients: "Uova, farina, acqua, brodo di gallina o manzo, pecorino grattugiato.",
+                instructions: "Prepara le scrippelle (simili a delle crêpes) mescolando in una ciotola uova, farina e acqua fino a ottenere una pastella liscia. Cuoci sottilmente in una padella antiaderente. Avvolgi ogni scrippella su se stessa e adagiala in una scodella. Versa sopra abbondante brodo di gallina bollente e spolvera con pecorino grattugiato prima di servire."
+            },
+            bocconotti: {
+                title: "Bocconotti",
+                ingredients: "Per la frolla: farina, uova, zucchero, strutto (o burro). Per il ripieno: marmellata d'uva o confettura, mandorle, cacao amaro.",
+                instructions: "Prepara la frolla mescolando farina, zucchero, uova e strutto fino a ottenere un impasto omogeneo. Stendilo e usalo per foderare gli stampini. Riempi ogni bocconotto con marmellata, una spolverata di cacao e mandorle tritate. Copri con un altro strato di frolla. Inforna a 180°C per circa 20-25 minuti, fino a doratura. Spolvera con zucchero a velo una volta freddi."
             }
         };
 
-        // Funzione per mostrare il modale con la ricetta
         function showRecipe(recipeId) {
             const modal = document.getElementById('recipe-modal');
             const recipeDetails = document.getElementById('recipe-details');
@@ -257,13 +297,11 @@
             }
         }
 
-        // Funzione per chiudere il modale
         function closeModal() {
             const modal = document.getElementById('recipe-modal');
             modal.style.display = 'none';
         }
 
-        // Chiudi il modale cliccando fuori
         window.onclick = function(event) {
             const modal = document.getElementById('recipe-modal');
             if (event.target == modal) {
