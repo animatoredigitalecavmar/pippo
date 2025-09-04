@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AI in Didattica — Guida per Docenti in Formazione</title>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#cbd5e1;
+      --accent1:#ff7a00; /* arancio vivace */
+      --accent2:#ff0066; /* magenta */
+      --accent3:#00a3ff; /* azzurro */
+      --radius:14px;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#071022 0%, #071836 50%, #071022 100%);color:var(--muted);}
+    .container{max-width:1100px;margin:28px auto;padding:24px;}
+
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent1),var(--accent2));box-shadow:0 6px 18px rgba(255,122,0,0.12);display:flex;align-items:center;justify-content:center;font-weight:700;color:white}
+    h1{font-size:20px;margin:0;color:white}
+    p.lead{margin:0;font-size:13px;color:#a8b3c7}
+
+    nav{display:flex;gap:10px;flex-wrap:wrap}
+    .menu-btn{background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);padding:10px 14px;border-radius:999px;font-weight:600;color:var(--muted);cursor:pointer;transition:transform .12s ease,box-shadow .12s ease}
+    .menu-btn:focus{outline:none;box-shadow:0 6px 20px rgba(0,163,255,0.12);transform:translateY(-3px)}
+    .menu-btn:hover{transform:translateY(-2px)}
+
+    .hero{display:grid;grid-template-columns:1fr 340px;gap:20px;align-items:start;margin-bottom:20px}
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:var(--radius);border:1px solid rgba(255,255,255,0.03)}
+    .cta{display:inline-block;margin-top:12px;padding:10px 12px;border-radius:12px;background:linear-gradient(90deg,var(--accent3),var(--accent1));color:white;text-decoration:none;font-weight:700}
+
+    main{display:grid;grid-template-columns:1fr 320px;gap:20px}
+    .content{display:flex;flex-direction:column;gap:16px}
+    section.card{background:var(--card);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+    section.card h2{margin-top:0;color:white}
+    ul{margin:8px 0 0 20px}
+    li{margin-bottom:8px;color:#c6d1e4}
+
+    aside.sticky{position:sticky;top:24px;height:max-content}
+    .toc{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));padding:12px;border-radius:12px}
+    .toc a{display:block;padding:8px;border-radius:8px;text-decoration:none;color:var(--muted);font-weight:600}
+    .toc a:hover{background:rgba(255,255,255,0.02);color:white}
+
+    footer{margin-top:28px;color:#7f8b9d;font-size:13px;text-align:center}
+
+    /* small screens */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      main{grid-template-columns:1fr}
+      aside.sticky{position:relative}
+    }
+
+    /* highlight boxes for each specific area */
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;font-weight:700;color:white;background:linear-gradient(90deg,var(--accent1),var(--accent2));font-size:13px}
+
+    /* subtle divider */
+    .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.03),transparent);margin:12px 0}
+
+    /* small helper for examples */
+    .example{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));padding:12px;border-radius:10px;border:1px dashed rgba(255,255,255,0.02);color:#dbe7ff}
+
+    /* accessible focus for anchors */
+    a:focus{outline:3px solid rgba(0,163,255,0.14);outline-offset:3px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">AI</div>
+        <div>
+          <h1>AI in Didattica — Guida essenziale</h1>
+          <p class="lead">Un percorso rapido e pratico per docenti in formazione. Niente fronzoli: cosa funziona, cosa non funziona, i rischi e come usarla con responsabilità.</p>
+        </div>
+      </div>
+
+      <nav aria-label="Menu principale">
+        <button class="menu-btn" onclick="document.getElementById('top').scrollIntoView({behavior:'smooth'})">Home</button>
+        <button class="menu-btn" onclick="document.getElementById('funz').scrollIntoView({behavior:'smooth'})">Funzionamento</button>
+        <button class="menu-btn" onclick="document.getElementById('rischi').scrollIntoView({behavior:'smooth'})">Rischi</button>
+        <button class="menu-btn" onclick="document.getElementById('costi').scrollIntoView({behavior:'smooth'})">Costi</button>
+        <button class="menu-btn" onclick="document.getElementById('primaria').scrollIntoView({behavior:'smooth'})">Primaria</button>
+        <button class="menu-btn" onclick="document.getElementById('secondaria').scrollIntoView({behavior:'smooth'})">Secondaria</button>
+        <button class="menu-btn" onclick="document.getElementById('medica').scrollIntoView({behavior:'smooth'})">Ricerca medica</button>
+      </nav>
+    </header>
+
+    <main>
+      <div class="content">
+        <section id="top" class="hero-card">
+          <div class="hero" style="grid-template-columns:1fr 260px">
+            <div>
+              <h2 style="color:white;margin:0 0 6px 0">Perché questa guida</h2>
+              <p style="margin:0 0 8px 0">Perché molti parlano di AI come se fosse magica. Qui trovi punti concreti e immediatamente utili per insegnare, progettare attività e valutare rischi.</p>
+              <div class="divider"></div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <span class="badge">Sintesi</span>
+                <span class="badge" style="background:linear-gradient(90deg,var(--accent3),var(--accent2))">Pratica</span>
+              </div>
+              <a class="cta" href="#funz">Inizia</a>
+            </div>
+
+            <aside style="align-self:start">
+              <div class="example">
+                <strong>Consiglio pratico</strong>
+                <p style="margin:6px 0 0 0">Testa sempre gli output: l'AI può generare errori anche convincenti. Se lo usi in classe, prevedi una fase di verifica insieme agli studenti.</p>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section id="funz" class="card" aria-labelledby="tit-funz">
+          <h2 id="tit-funz">Funzionamento generale dell'AI</h2>
+          <p>Concetti base che un docente deve conoscere senza perdersi in dettagli tecnici:</p>
+          <ul>
+            <li><strong>Modelli statistici su larga scala:</strong> l'AI predice output basandosi su pattern visti nei dati d'addestramento.</li>
+            <li><strong>Dati e bias:</strong> se i dati sono sbilanciati, lo saranno anche i risultati.</li>
+            <li><strong>Differenza tra raccomandazione e spiegazione:</strong> molte AI danno risposte plausibili ma non spiegano la logica sottostante.</li>
+            <li><strong>Prompting:</strong> le istruzioni (prompt) guidano il risultato: saper scrivere prompt chiari è cruciale.</li>
+          </ul>
+          <div class="divider"></div>
+          <details>
+            <summary style="cursor:pointer">Breve glossario</summary>
+            <ul>
+              <li><strong>Dataset:</strong> insieme dei dati usati per "insegnare" il modello.</li>
+              <li><strong>Overfitting:</strong> quando il modello "impara a memoria" i dati e non generalizza.</li>
+              <li><strong>Modello multimodale:</strong> gestisce testo, immagini o audio insieme.</li>
+            </ul>
+          </details>
+        </section>
+
+        <section id="rischi" class="card" aria-labelledby="tit-rischi">
+          <h2 id="tit-rischi">Rischi derivanti dall'utilizzo</h2>
+          <p>Non sono teorie: sono problemi concreti da cui partire con cautela.</p>
+          <ul>
+            <li><strong>Informazioni errate o fuorvianti:</strong> controllare sempre le fonti.</li>
+            <li><strong>Dipendenza tecnologica:</strong> non delegare l'insegnamento alla macchina.</li>
+            <li><strong>Privacy degli studenti:</strong> dati personali sensibili non vanno condivisi con servizi esterni senza autorizzazione.</li>
+            <li><strong>Bias e discriminazioni:</strong> alcune risposte possono risultare stereotipate o ingiuste.</li>
+            <li><strong>Plagio e valutazione:</strong> il lavoro prodotto con AI richiede chiare regole di attribuzione e verifica.</li>
+          </ul>
+        </section>
+
+        <section id="costi" class="card" aria-labelledby="tit-costi">
+          <h2 id="tit-costi">Costi</h2>
+          <p>I costi non sono solo economici — considerate anche tempo, competenze e governance.</p>
+          <ul>
+            <li><strong>Monetari:</strong> molti servizi hanno piani free limitati, poi costi per uso intensivo o API.</li>
+            <li><strong>Formazione:</strong> tempo per aggiornare docenti e progettare attività didattiche valide.</li>
+            <li><strong>Infrastruttura:</strong> dispositivi, connessione, strumenti per la protezione dei dati.</li>
+            <li><strong>Costi nascosti:</strong> revisioni dei materiali prodotti dall'AI, gestione di errori e contenziosi.</li>
+          </ul>
+        </section>
+
+        <section id="primaria" class="card" aria-labelledby="tit-primaria">
+          <h2 id="tit-primaria">Applicazioni alla Scuola Primaria</h2>
+          <p>Idee pratiche e limiti—semplici e verificabili.</p>
+          <ul>
+            <li><strong>Supporto alla lettura:</strong> sintetizzare storie in versi più semplici, creare domande di comprensione.</li>
+            <li><strong>Creazione di schede:</strong> generare esercizi adattati al livello della classe (sempre revisionati dal docente).</li>
+            <li><strong>Laboratori creativi:</strong> scrittura guidata di filastrocche, racconti collettivi con controllo umano.</li>
+            <li><strong>Attenzione ai dati:</strong> evitare caricamento di nomi o informazioni sensibili degli alunni.</li>
+          </ul>
+        </section>
+
+        <section id="secondaria" class="card" aria-labelledby="tit-secondaria">
+          <h2 id="tit-secondaria">Applicazioni alla Scuola Secondaria</h2>
+          <p>Più spazio all'approfondimento critico e al pensiero riflessivo.</p>
+          <ul>
+            <li><strong>Feedback sui testi:</strong> suggerimenti per migliorare struttura, stile e argomentazione (usare come primo draft, non come valutazione finale).</li>
+            <li><strong>Laboratori di cittadinanza digitale:</strong> analisi critica di output AI, riconoscimento dei bias.</li>
+            <li><strong>Supporto alla programmazione:</strong> generazione di esempi e spiegazioni, ma verificare sempre correttezza tecnica.</li>
+            <li><strong>Valutazione formativa:</strong> usare l'AI per test auto-valutativi, non per giudizi sommativi senza controllo umano.</li>
+          </ul>
+        </section>
+
+        <section id="medica" class="card" aria-labelledby="tit-medica">
+          <h2 id="tit-medica">Applicazioni nella ricerca medica</h2>
+          <p>Ambito ad alto potenziale, ma con responsabilità molto elevate.</p>
+          <ul>
+            <li><strong>Analisi dati e pattern:</strong> supporto nell'analisi di grandi dataset (genomica, immagini diagnostiche) sotto controllo specialistico.</li>
+            <li><strong>Ricerca bibliografica:</strong> screening rapido di letteratura, utile come primo filtro — sempre verificare le fonti originali.</li>
+            <li><strong>Supporto alla diagnosi:</strong> in fase di sperimentazione: non sostituisce il giudizio clinico.</li>
+            <li><strong>Compliance e regolamentazione:</strong> attenzione a normative su dati sanitari (GDPR, normative locali). Non caricare dati sensibili senza procedure stabilite.</li>
+          </ul>
+        </section>
+
+        <footer>
+          <p>Questa pagina è pensata come punto di partenza. Non sostituisce la formazione professionale: testate tutto e tenete il controllo.</p>
+        </footer>
+      </div>
+
+      <aside class="sticky">
+        <div class="toc">
+          <strong style="display:block;margin-bottom:8px;color:white">Sommario rapido</strong>
+          <a href="#funz">Funzionamento generale</a>
+          <a href="#rischi">Rischi</a>
+          <a href="#costi">Costi</a>
+          <a href="#primaria">Scuola Primaria</a>
+          <a href="#secondaria">Scuola Secondaria</a>
+          <a href="#medica">Ricerca medica</a>
+        </div>
+
+        <div style="height:14px"></div>
+        <div class="toc" aria-hidden="false">
+          <strong style="display:block;margin-bottom:8px;color:white">Attività veloci (15') </strong>
+          <ol style="margin:0 0 0 16px;color:#cfdffb">
+            <li>Verifica: chiedi all'AI un riassunto e confrontalo con il testo.</li>
+            <li>Debrief: discuti con la classe possibili bias nell'output.</li>
+            <li>Regole: stabilisci un protocollo di uso chiaro per compiti e valutazioni.</li>
+          </ol>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script>
+    // fallback: add id top for scrolling
+    (function(){if(!document.getElementById('top')){var t=document.createElement('div');t.id='top';document.body.insertBefore(t,document.body.firstChild);}})();
+  </script>
+</body>
+</html>
