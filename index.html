@@ -1,313 +1,270 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abruzzo in Tavola 🍝</title>
-    
-    <style>
-        /* Stili di base */
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            background-color: #f4f2e9;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Header (Hero) */
-        .hero {
-            background: url('https://via.placeholder.com/1500x800.png?text=Abruzzo+Landscape') no-repeat center center/cover;
-            height: 60vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            position: relative;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-        }
-
-        .hero-content {
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5em;
-            margin-bottom: 0.2em;
-        }
-
-        .hero p {
-            font-size: 1.2em;
-        }
-
-        /* Griglia delle ricette */
-        .recipes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .recipe-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .recipe-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .recipe-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .recipe-info {
-            padding: 20px;
-        }
-
-        .recipe-info h2 {
-            font-family: 'Playfair Display', serif;
-            color: #a44a3f;
-            margin-top: 0;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: #a44a3f;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: #8c3b31;
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #333;
-            color: white;
-            margin-top: 40px;
-        }
-
-        /* Stili Modale */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 10;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.6);
-        }
-
-        .modal-content {
-            background-color: #fff;
-            margin: 5% auto;
-            padding: 30px;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 700px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            position: relative;
-            animation: fadeIn 0.5s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .close-btn {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close-btn:hover,
-        .close-btn:focus {
-            color: #333;
-            text-decoration: none;
-        }
-    </style>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Audioguida Milano — index.html</title>
+  <style>
+    :root{--bg:#f5f6f8;--card:#ffffff;--accent:#1f6feb;--muted:#6b7280}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, system-ui, -apple-system, Roboto, 'Helvetica Neue', Arial; background:var(--bg); color:#0f172a}
+    .app{display:flex;min-height:100vh}
+    nav{width:320px;background:linear-gradient(180deg,#fff,#fbfdff);border-right:1px solid #e6e9ef;padding:20px}
+    .brand{font-weight:700;font-size:18px;margin-bottom:12px}
+    .list{display:flex;flex-direction:column;gap:12px}
+    .item{display:flex;gap:12px;align-items:center;padding:10px;border-radius:8px;cursor:pointer;border:1px solid transparent}
+    .item.active{background:#eef6ff;border-color:#dbeefe}
+    .thumb{width:64px;height:48px;background:#e9eef6;border-radius:6px;overflow:hidden;flex:0 0 64px}
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .meta{flex:1}
+    .meta h4{margin:0;font-size:15px}
+    .meta p{margin:4px 0 0;font-size:13px;color:var(--muted)}
+    .edit-controls{margin-top:14px;display:flex;gap:8px}
+    .edit-controls button,label{background:#fff;border:1px solid #e2e8f0;padding:6px 8px;border-radius:6px;font-size:13px;cursor:pointer}
+    main{flex:1;padding:36px}
+    .card{background:var(--card);padding:20px;border-radius:12px;box-shadow:0 6px 18px rgba(16,24,40,0.04);max-width:900px}
+    .hero{display:flex;gap:20px;align-items:flex-start}
+    .hero .bigthumb{width:360px;height:220px;border-radius:10px;overflow:hidden;background:#f3f4f6}
+    .hero .bigthumb img{width:100%;height:100%;object-fit:cover}
+    .content{flex:1}
+    .synopsis{white-space:pre-wrap;margin-top:6px;color:#111827}
+    audio{width:100%;margin-top:12px}
+    .small{font-size:13px;color:var(--muted)}
+    .controls-row{display:flex;gap:8px;align-items:center;margin-top:12px}
+    .btn{background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+    .btn.secondary{background:#fff;color:var(--accent);border:1px solid #dbeafe}
+    .note{margin-top:12px;font-size:13px;color:#7b8794}
+    footer{padding:18px;font-size:13px;color:var(--muted)}
+    /* responsive */
+    @media (max-width:880px){nav{width:100%;display:flex;overflow:auto} .app{flex-direction:column} .hero{flex-direction:column} .hero .bigthumb{width:100%;height:220px}}
+  </style>
 </head>
 <body>
+  <div class="app" role="application">
+    <nav aria-label="Menu luoghi">
+      <div class="brand">Audioguida Milano — modifica i contenuti</div>
+      <div class="list" id="menu">
+        <!-- items injected by JS -->
+      </div>
+      <div class="edit-controls">
+        <button id="resetBtn" title="Ripristina i contenuti di esempio">Ripristina default</button>
+        <label style="margin-left:auto"><input id="clearStore" type="checkbox" /> Non salvare (sessione)</label>
+      </div>
+      <div class="note">Carica immagini e file audio direttamente qui. I file vengono salvati nel browser (localStorage) per tua comodità. Attenzione: file molto grandi possono non essere salvati.</div>
+    </nav>
 
-    <header class="hero">
-        <div class="hero-content">
-            <h1>Sapori d'Abruzzo</h1>
-            <p>Un viaggio culinario tra le tradizioni autentiche d'Abruzzo.</p>
-        </div>
-    </header>
-
-    <main class="container">
-        <section class="recipes-grid">
-            
-            <article class="recipe-card">
-                <img src="https://via.placeholder.com/400x300.png?text=Arrosticini" alt="Arrosticini abruzzesi">
-                <div class="recipe-info">
-                    <h2>Arrosticini</h2>
-                    <p>I celebri spiedini di pecora, un'icona della tradizione pastorale abruzzese.</p>
-                    <a class="btn" onclick="showRecipe('arrosticini')">Scopri la ricetta</a>
-                </div>
-            </article>
-
-            <article class="recipe-card">
-                <img src="https://via.placeholder.com/400x300.png?text=Maccheroni+alla+Chitarra" alt="Maccheroni alla Chitarra">
-                <div class="recipe-info">
-                    <h2>Maccheroni alla Chitarra</h2>
-                    <p>Pasta fresca preparata con l'attrezzo tradizionale, spesso condita con sugo di agnello.</p>
-                    <a class="btn" onclick="showRecipe('chitarra')">Scopri la ricetta</a>
-                </div>
-            </article>
-
-            <article class="recipe-card">
-                <img src="https://via.placeholder.com/400x300.png?text=Pallotte+Cacio+e+Ovo" alt="Pallotte Cacio e Ovo">
-                <div class="recipe-info">
-                    <h2>Pallotte Cacio e Ovo</h2>
-                    <p>Deliziose polpette fritte a base di formaggio e uova, un piatto povero ma ricco di gusto.</p>
-                    <a class="btn" onclick="showRecipe('pallotte')">Scopri la ricetta</a>
-                </div>
-            </article>
-
-            <article class="recipe-card">
-                <img src="https://via.placeholder.com/400x300.png?text=Brodetto+Vastese" alt="Brodetto di Pesce">
-                <div class="recipe-info">
-                    <h2>Brodetto alla Vastese</h2>
-                    <p>Una ricca zuppa di pesce, tipica della costa di Vasto, un vero inno al mare.</p>
-                    <a class="btn" onclick="showRecipe('brodetto')">Scopri la ricetta</a>
-                </div>
-            </article>
-
-            <article class="recipe-card">
-                <img src="https://via.placeholder.com/400x300.png?text=Scrippelle+'Mbusse" alt="Scrippelle 'Mbusse">
-                <div class="recipe-info">
-                    <h2>Scrippelle 'Mbusse</h2>
-                    <p>Sottili crêpes salate immerse in un brodo caldo di gallina, un primo piatto delicato e saporito.</p>
-                    <a class="btn" onclick="showRecipe('scrippelle')">Scopri la ricetta</a>
-                </div>
-            </article>
-
-            <article class="recipe-card">
-                <img src="https://via.placeholder.com/400x300.png?text=Bocconotti" alt="Bocconotti">
-                <div class="recipe-info">
-                    <h2>Bocconotti</h2>
-                    <p>Un piccolo dolce di pasta frolla ripieno di marmellata d'uva o cioccolato, simbolo della pasticceria abruzzese.</p>
-                    <a class="btn" onclick="showRecipe('bocconotti')">Scopri la ricetta</a>
-                </div>
-            </article>
-
-        </section>
+    <main>
+      <div class="card" id="viewer">
+        <!-- contenuto caricato da JS -->
+      </div>
+      <footer>File unico: <code>index.html</code>. Modifica sinossi, immagine, audio con i controlli a lato. Se ti rompi, cancella i dati del sito dal browser.</footer>
     </main>
+  </div>
 
-    <footer class="footer">
-        <p>&copy; 2025 Sapori d'Abruzzo. Realizzato con passione.</p>
-    </footer>
-
-    <div id="recipe-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <div id="recipe-details">
-                </div>
-        </div>
+  <template id="item-template">
+    <div class="item" data-id="{{id}}">
+      <div class="thumb"><img src="{{img}}" alt="{{title}}" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=200 height=120><rect width=\'100%\' height=\'100%\' fill=\'%23e9eef6\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%237b8794\' font-family=\'Arial\' font-size=14>{{title}}</text></svg>'"/></div>
+      <div class="meta">
+        <h4>{{title}}</h4>
+        <p class="small">{{short}}</p>
+      </div>
     </div>
+  </template>
 
-    <script>
-        const recipes = {
-            arrosticini: {
-                title: "Arrosticini",
-                ingredients: "Carne di pecora (castrato o agnello), sale grosso.",
-                instructions: "Taglia la carne in cubetti di circa 1 cm e infilzala su spiedini di legno, alternando parti magre e grasse per renderli più gustosi. Cuoci gli spiedini su una brace rovente, preferibilmente su una 'fornacella'. Gira spesso per una cottura uniforme. Salali solo a fine cottura per evitare che la carne si indurisca."
-            },
-            chitarra: {
-                title: "Maccheroni alla Chitarra",
-                ingredients: "400g di farina di semola di grano duro, 4 uova medie, acqua tiepida q.b.",
-                instructions: "Disponi la farina a fontana su una spianatoia, crea un buco al centro e rompi le uova. Impasta energicamente aggiungendo un po' d'acqua se necessario, fino a ottenere un panetto liscio. Lascia riposare per 30 minuti. Stendi la sfoglia con il mattarello e adagiala sulla 'chitarra'. Premi con il mattarello sulla sfoglia per far scendere i maccheroni. Cuoci in acqua bollente e condisci con il tradizionale ragù di castrato o agnello."
-            },
-            pallotte: {
-                title: "Pallotte Cacio e Ovo",
-                ingredients: "300g di formaggio pecorino e/o caciotta grattugiato, 3 uova, pangrattato q.b., aglio e prezzemolo tritati.",
-                instructions: "In una ciotola, mescola il formaggio grattugiato, le uova, l'aglio e il prezzemolo. Aggiungi il pangrattato poco alla volta fino a ottenere un impasto lavorabile, che non si attacchi alle mani. Forma delle palline (o polpette) e friggile in olio di semi caldo fino a doratura. Scolale e lasciale insaporire in un sugo di pomodoro semplice per qualche minuto."
-            },
-            brodetto: {
-                title: "Brodetto di Pesce alla Vastese",
-                ingredients: "Pesce fresco misto (seppie, triglie, scorfani, cozze), pomodorini, peperoni dolci secchi, aglio, peperoncino, olio EVO.",
-                instructions: "In una teglia larga (meglio se di coccio), soffriggi aglio e peperoncino nell'olio. Aggiungi i peperoni secchi a pezzetti e i pomodorini. Aggiungi i pesci più duri per primi, poi quelli più teneri e le cozze. Copri con acqua calda, sala e cuoci a fuoco basso senza mai mescolare, ma scuotendo la teglia per non rompere il pesce. Servi con fette di pane abbrustolito."
-            },
-            scrippelle: {
-                title: "Scrippelle 'Mbusse",
-                ingredients: "Uova, farina, acqua, brodo di gallina o manzo, pecorino grattugiato.",
-                instructions: "Prepara le scrippelle (simili a delle crêpes) mescolando in una ciotola uova, farina e acqua fino a ottenere una pastella liscia. Cuoci sottilmente in una padella antiaderente. Avvolgi ogni scrippella su se stessa e adagiala in una scodella. Versa sopra abbondante brodo di gallina bollente e spolvera con pecorino grattugiato prima di servire."
-            },
-            bocconotti: {
-                title: "Bocconotti",
-                ingredients: "Per la frolla: farina, uova, zucchero, strutto (o burro). Per il ripieno: marmellata d'uva o confettura, mandorle, cacao amaro.",
-                instructions: "Prepara la frolla mescolando farina, zucchero, uova e strutto fino a ottenere un impasto omogeneo. Stendilo e usalo per foderare gli stampini. Riempi ogni bocconotto con marmellata, una spolverata di cacao e mandorle tritate. Copri con un altro strato di frolla. Inforna a 180°C per circa 20-25 minuti, fino a doratura. Spolvera con zucchero a velo una volta freddi."
-            }
-        };
+  <script>
+    // DATA: default items (you can change these default sinossi below)
+    const DEFAULTS = [
+      {
+        id: 'cenacolo',
+        title: 'Il Cenacolo',
+        short: 'Breve sinossi del Cenacolo (sostituisci con la tua).',
+        synopsis: 'Inserisci qui la sinossi completa per Il Cenacolo. Puoi incollare testo lungo; verrà mostrato esattamente come lo metti.',
+        img: 'data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=600 height=400><rect width=\'100%\' height=\'100%\' fill=\'%23f3f4f6\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%237b8794\' font-family=\'Arial\' font-size=28>Immagine Cenacolo (sostituisci)</text></svg>',
+        audio: ''
+      },
+      {
+        id: 'santambrogio',
+        title: 'Basilica di Sant\'Ambrogio',
+        short: 'Breve sinossi della Basilica (sostituisci con la tua).',
+        synopsis: 'Inserisci qui la sinossi completa per la Basilica di Sant\'Ambrogio. Sii conciso e preciso.',
+        img: 'data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=600 height=400><rect width=\'100%\' height=\'100%\' fill=\'%23f3f4f6\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%237b8794\' font-family=\'Arial\' font-size=28>Basilica (sostituisci)</text></svg>',
+        audio: ''
+      },
+      {
+        id: 'duomo',
+        title: 'Il Duomo',
+        short: 'Breve sinossi del Duomo (sostituisci con la tua).',
+        synopsis: 'Inserisci qui la sinossi completa per il Duomo di Milano. Ricordati di citare punti chiave per i visitatori.',
+        img: 'data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=600 height=400><rect width=\'100%\' height=\'100%\' fill=\'%23f3f4f6\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%237b8794\' font-family=\'Arial\' font-size=28>Duomo (sostituisci)</text></svg>',
+        audio: ''
+      }
+    ];
 
-        function showRecipe(recipeId) {
-            const modal = document.getElementById('recipe-modal');
-            const recipeDetails = document.getElementById('recipe-details');
-            const recipe = recipes[recipeId];
+    const STORAGE_KEY = 'audioguida_milano_v1';
+    let items = [];
+    let activeId = 'cenacolo';
+    let dontSave = false;
 
-            if (recipe) {
-                recipeDetails.innerHTML = `
-                    <h3>${recipe.title}</h3>
-                    <h4>Ingredienti:</h4>
-                    <p>${recipe.ingredients}</p>
-                    <h4>Istruzioni:</h4>
-                    <p>${recipe.instructions}</p>
-                `;
-                modal.style.display = 'block';
-            }
+    function load() {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        try{ items = JSON.parse(stored); }catch(e){ items = DEFAULTS; }
+      } else {
+        items = DEFAULTS;
+      }
+    }
+
+    function save() {
+      if (dontSave) return;
+      try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(items)); }catch(e){ console.warn('Impossibile salvare: file troppo grande o spazio esaurito.'); }
+    }
+
+    function el(sel, root=document){return root.querySelector(sel)}
+
+    function renderMenu(){
+      const menu = el('#menu'); menu.innerHTML='';
+      items.forEach(it=>{
+        const tpl = el('#item-template').innerHTML
+          .replace('{{id}}', it.id)
+          .replace(/{{title}}/g, escapeHtml(it.title))
+          .replace('{{img}}', it.img)
+          .replace('{{short}}', escapeHtml(it.short));
+        const div = document.createElement('div');
+        div.innerHTML = tpl;
+        const node = div.firstElementChild;
+        if(it.id===activeId) node.classList.add('active');
+        node.addEventListener('click', ()=>{ activeId=it.id; renderMenu(); renderViewer(); });
+        node.addEventListener('contextmenu', (e)=>{ e.preventDefault(); openEditor(it.id); });
+        menu.appendChild(node);
+      });
+    }
+
+    function renderViewer(){
+      const v = el('#viewer');
+      const it = items.find(x=>x.id===activeId) || items[0];
+      v.innerHTML = `
+        <div class="hero">
+          <div class="bigthumb"><img src="${it.img}" alt="${escapeHtml(it.title)}" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=600 height=400><rect width=\\'100%\\' height=\\'100%\\' fill=\\'%23f3f4f6\\'/><text x=\\'50%\\' y=\\'50%\\' dominant-baseline=\\'middle\\' text-anchor=\\'middle\\' fill=\\'%237b8794\\' font-family=\\'Arial\\' font-size=20'>Immagine non disponibile</text></svg>'"/></div>
+          <div class="content">
+            <h2>${escapeHtml(it.title)}</h2>
+            <div class="synopsis">${escapeHtml(it.synopsis)}</div>
+            ${it.audio ? `<audio controls src="${it.audio}">Il tuo browser non supporta l'elemento audio.</audio>` : `<div class="note">Nessun audio caricato. Usa il menu a sinistra (click destro su voci) oppure i controlli rapidi per aggiungere file audio.</div>`}
+            <div class="controls-row">
+              <button class="btn" onclick="openEditor('${it.id}')">Modifica contenuto</button>
+              <button class="btn secondary" onclick="playAudio('${it.id}')">Play audio</button>
+            </div>
+            <div class="note">Suggerimento: fai click destro su una voce nel menu per aprire l'editor rapido. I file grandi potrebbero non essere salvati in localStorage.</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function openEditor(id){
+      const it = items.find(x=>x.id===id); if(!it) return;
+      // create a small modal-like editor using prompt/file inputs
+      const wrapper = document.createElement('div');
+      wrapper.style.position='fixed';wrapper.style.left=0;wrapper.style.top=0;wrapper.style.right=0;wrapper.style.bottom=0;wrapper.style.backdropFilter='blur(2px)';wrapper.style.display='flex';wrapper.style.alignItems='center';wrapper.style.justifyContent='center';
+      wrapper.style.zIndex=9999;
+      const card = document.createElement('div');
+      card.style.background='#fff';card.style.padding='18px';card.style.borderRadius='12px';card.style.width='720px';card.style.maxHeight='88vh';card.style.overflow='auto';card.style.boxShadow='0 12px 40px rgba(2,6,23,0.15)';
+      card.innerHTML = `
+        <h3>Modifica: ${escapeHtml(it.title)}</h3>
+        <label class="small">Titolo (visibile nel menu)</label>
+        <input id="edt_title" style="width:100%;padding:8px;margin:6px 0;border:1px solid #e6e9ef;border-radius:6px" value="${escapeAttr(it.title)}" />
+        <label class="small">Sinossi breve (riga menu)</label>
+        <input id="edt_short" style="width:100%;padding:8px;margin:6px 0;border:1px solid #e6e9ef;border-radius:6px" value="${escapeAttr(it.short)}" />
+        <label class="small">Sinossi completa</label>
+        <textarea id="edt_syn" style="width:100%;height:120px;padding:8px;margin:6px 0;border:1px solid #e6e9ef;border-radius:6px">${escapeAttr(it.synopsis)}</textarea>
+        <div style="display:flex;gap:12px;margin-top:8px;align-items:center">
+          <div style="flex:0 0 180px">
+            <div style="font-size:13px;color:var(--muted);margin-bottom:6px">Immagine</div>
+            <div style="width:180px;height:120px;border-radius:8px;overflow:hidden;background:#f3f4f6"><img id="previewImg" src="${it.img}" style="width:100%;height:100%;object-fit:cover"/></div>
+            <input id="imgFile" type="file" accept="image/*" style="margin-top:8px" />
+            <button id="removeImg" style="margin-top:6px;padding:6px;border-radius:6px;border:1px solid #e6e9ef;background:#fff">Rimuovi immagine</button>
+          </div>
+          <div style="flex:1">
+            <div style="font-size:13px;color:var(--muted);margin-bottom:6px">Audio</div>
+            <div id="audioBox">${it.audio ? `<audio controls src="${it.audio}"></audio>` : `<div class="note">Nessun audio caricato</div>`}</div>
+            <input id="audioFile" type="file" accept="audio/*" style="margin-top:8px" />
+            <div style="margin-top:8px;display:flex;gap:8px">
+              <button id="saveBtn" class="btn">Salva</button>
+              <button id="cancelBtn" class="btn secondary">Annulla</button>
+              <button id="removeAudio" style="padding:6px;border-radius:6px;border:1px solid #e6e9ef;background:#fff">Rimuovi audio</button>
+            </div>
+            <div class="note" style="margin-top:8px">Nota: i file vengono convertiti in base64 e salvati nel browser. File molto grandi possono superare la quota di storage del browser.</div>
+          </div>
+        </div>
+      `;
+      wrapper.appendChild(card); document.body.appendChild(wrapper);
+
+      // wire up
+      el('#imgFile', card).addEventListener('change', async (e)=>{
+        const f = e.target.files[0]; if(!f) return;
+        const data = await fileToDataURL(f);
+        el('#previewImg', card).src = data;
+      });
+      el('#removeImg', card).addEventListener('click', ()=>{ el('#previewImg', card).src = DEFAULTS.find(x=>x.id===id).img; el('#imgFile', card).value=''; });
+      el('#audioFile', card).addEventListener('change', async (e)=>{
+        const f = e.target.files[0]; if(!f) return;
+        // preview
+        const blobUrl = URL.createObjectURL(f);
+        const box = el('#audioBox', card); box.innerHTML = `<audio controls src="${blobUrl}"></audio>`;
+      });
+      el('#removeAudio', card).addEventListener('click', ()=>{ el('#audioBox', card).innerHTML = `<div class=\'note\'>Nessun audio caricato</div>`; el('#audioFile', card).value=''; });
+
+      el('#cancelBtn', card).addEventListener('click', ()=>{ wrapper.remove(); });
+
+      el('#saveBtn', card).addEventListener('click', async ()=>{
+        const newTitle = el('#edt_title', card).value.trim() || it.title;
+        const newShort = el('#edt_short', card).value.trim() || it.short;
+        const newSyn = el('#edt_syn', card).value.trim() || it.synopsis;
+        // image: if user selected a file, convert and save; otherwise use preview src
+        const imgInput = el('#imgFile', card);
+        let newImg = el('#previewImg', card).src;
+        if(imgInput && imgInput.files && imgInput.files[0]){
+          try{ newImg = await fileToDataURL(imgInput.files[0]); }catch(e){ console.warn(e); }
+        }
+        // audio: if new file selected, convert to dataURL
+        const audioInput = el('#audioFile', card);
+        let newAudio = '';
+        if(audioInput && audioInput.files && audioInput.files[0]){
+          try{ newAudio = await fileToDataURL(audioInput.files[0]); }catch(e){ console.warn(e); }
+        } else {
+          // if an <audio> exists in audioBox and its src is a blob url, we cannot persist it; check original
+          if(it.audio) newAudio = it.audio; // keep existing
         }
 
-        function closeModal() {
-            const modal = document.getElementById('recipe-modal');
-            modal.style.display = 'none';
-        }
+        // update
+        it.title = newTitle; it.short = newShort; it.synopsis = newSyn; it.img = newImg; it.audio = newAudio;
+        save(); renderMenu(); renderViewer(); wrapper.remove();
+      });
+    }
 
-        window.onclick = function(event) {
-            const modal = document.getElementById('recipe-modal');
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        }
-    </script>
+    function playAudio(id){
+      const it = items.find(x=>x.id===id);
+      if(!it || !it.audio){ alert('Nessun audio disponibile per questo elemento. Apri l\'editor per caricarne uno.'); return; }
+      // create temporary audio element and play
+      const a = new Audio(it.audio); a.play();
+    }
+
+    function fileToDataURL(file){
+      return new Promise((res,rej)=>{
+        const r = new FileReader(); r.onload = ()=>res(r.result); r.onerror = ()=>rej(new Error('Errore lettura file')); r.readAsDataURL(file);
+      });
+    }
+
+    function escapeHtml(s){ return (s+'').replace(/[&<>\"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;', '"':'&quot;'}[c])); }
+    function escapeAttr(s){ return (s+'').replace(/"/g,'\"').replace(/</g,'&lt;'); }
+
+    // UI bindings
+    el('#resetBtn').addEventListener('click', ()=>{ if(confirm('Ripristinare i contenuti di default? Tutto quello che hai salvato verrà sovrascritto.')){ items = JSON.parse(JSON.stringify(DEFAULTS)); save(); renderMenu(); renderViewer(); } });
+    el('#clearStore').addEventListener('change', (e)=>{ dontSave = e.target.checked; if(dontSave) console.log('Non salverò le modifiche in localStorage'); else save(); });
+
+    // init
+    load(); renderMenu(); renderViewer();
+
+    // expose a couple helpers for console debugging
+    window._AG = {items, save, load, openEditor, playAudio};
+  </script>
 </body>
 </html>
