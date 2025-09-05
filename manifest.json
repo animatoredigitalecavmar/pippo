@@ -1,0 +1,15 @@
+{
+  "name": "Audioguida Milano",
+  "short_name": "Audioguida",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#444444",
+  "icons": [
+    {
+      "src": "img/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
