@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Audioguida Milano</title>
+
+  <!-- Collegamento al manifest per PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#444444">
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -65,17 +70,14 @@
   </header>
 
   <main>
-    <!-- Cenacolo -->
     <div class="card" onclick="showContent('cenacolo')">
       <img src="img/cenacolo.jpg" alt="Il Cenacolo">
       <h2>Il Cenacolo</h2>
     </div>
-    <!-- Sant'Ambrogio -->
     <div class="card" onclick="showContent('santambrogio')">
       <img src="img/santambrogio.jpg" alt="Basilica di Sant'Ambrogio">
       <h2>Basilica di Sant'Ambrogio</h2>
     </div>
-    <!-- Duomo -->
     <div class="card" onclick="showContent('duomo')">
       <img src="img/duomo.jpg" alt="Duomo di Milano">
       <h2>Duomo</h2>
@@ -83,39 +85,27 @@
   </main>
 
   <section id="contenuti">
-    <!-- Contenuto Cenacolo -->
     <div id="cenacolo" class="content">
       <h2>Il Cenacolo</h2>
-      <p>
-        Qui potrai inserire la tua sinossi personalizzata sul Cenacolo Vinciano,
-        spiegando brevemente il contesto e l'importanza dell'opera di Leonardo da Vinci.
-      </p>
+      <p>Inserisci qui la tua sinossi personalizzata sul Cenacolo Vinciano.</p>
       <audio controls>
         <source src="audio/cenacolo.mp3" type="audio/mpeg">
         Il tuo browser non supporta l'audio.
       </audio>
     </div>
 
-    <!-- Contenuto Sant'Ambrogio -->
     <div id="santambrogio" class="content">
       <h2>Basilica di Sant'Ambrogio</h2>
-      <p>
-        Qui potrai inserire la tua sinossi personalizzata sulla Basilica di Sant’Ambrogio,
-        uno dei luoghi religiosi più importanti e antichi di Milano.
-      </p>
+      <p>Inserisci qui la tua sinossi personalizzata sulla Basilica di Sant’Ambrogio.</p>
       <audio controls>
         <source src="audio/santambrogio.mp3" type="audio/mpeg">
         Il tuo browser non supporta l'audio.
       </audio>
     </div>
 
-    <!-- Contenuto Duomo -->
     <div id="duomo" class="content">
-      <h2>Il Duomo</h2>
-      <p>
-        Qui potrai inserire la tua sinossi personalizzata sul Duomo di Milano,
-        simbolo della città e straordinario esempio di architettura gotica.
-      </p>
+      <h2>Duomo di Milano</h2>
+      <p>Inserisci qui la tua sinossi personalizzata sul Duomo di Milano.</p>
       <audio controls>
         <source src="audio/duomo.mp3" type="audio/mpeg">
         Il tuo browser non supporta l'audio.
